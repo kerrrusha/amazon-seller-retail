@@ -43,7 +43,7 @@ public class UserRepositoryIntegrationTest {
         userRepository.save(user);
 
         // Then
-        User savedUser = userRepository.findById(user.getId()).orElse(null);
+        User savedUser = userRepository.findById(user.getId()).orElseThrow();
 
         assertNotNull(savedUser);
         assertEquals(user.getEmail(), savedUser.getEmail());
