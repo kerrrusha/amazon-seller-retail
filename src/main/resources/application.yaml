@@ -1,0 +1,31 @@
+server:
+  servlet:
+    contextpath: /api
+
+jwt:
+  secret: fjshbfJKHFDSJKhfos8fp3fofSDFsf32455vdcfghdfgv34234ggdgjghjdf5345DSFSDFsfrg43vdjhfbjdhb487v498bv0230vn0485vb
+  expiration:
+    ms: 86400000
+
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: amazon_seller_retail
+      autoindexcreation: true
+  output:
+    ansi:
+      enabled: always
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
+
+stats:
+  source:
+    resource: test_report.json
+  refresh-each:
+    ms: 5000
