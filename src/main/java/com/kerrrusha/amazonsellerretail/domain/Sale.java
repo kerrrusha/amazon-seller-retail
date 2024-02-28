@@ -5,9 +5,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @Document
-public class SalesAndTrafficByAsin {
+public class Sale {
 
-    private String parentAsin;
-    private SalesReport salesByAsin;
-    private TrafficReport trafficByAsin;
+    private double amount;
+    private CurrencyCode currencyCode;
+
+    public enum CurrencyCode {
+        USD,
+    }
 }

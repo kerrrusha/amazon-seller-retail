@@ -1,26 +1,15 @@
 package com.kerrrusha.amazonsellerretail.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-import org.springframework.data.annotation.Id;
+import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Getter
-@Setter
+import java.util.List;
+
+@Data
 @Document
-@ToString
-@NoArgsConstructor
-@AllArgsConstructor
 public class Report {
-    @Id
-    private String id;
 
     private ReportSpecification reportSpecification;
-
-    private SalesAndTrafficByDate salesAndTrafficByDate;
-
-    private SalesAndTrafficByAsin salesAndTrafficByAsin;
+    private List<SalesAndTrafficByDate> salesAndTrafficByDate;
+    private List<SalesAndTrafficByAsin> salesAndTrafficByAsin;
 }
