@@ -20,6 +20,7 @@ After successful application startup, you can use it in next ways:
 
 ### Used technologies
 - Java 17
+- Spring 6.1.4
 - Spring Boot 3.2.3
 - Spring Web (REST API)
 - Spring Data & Validation (MongoDB)

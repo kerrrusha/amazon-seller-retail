@@ -29,6 +29,6 @@ logging:
 
 stats:
   source:
-    resource: test_report.json
+    file: test_report.json
   refresh-each:
     ms: 5000

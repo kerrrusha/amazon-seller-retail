@@ -5,6 +5,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.kerrrusha.amazonsellerretail.config.MongoTestContainerBase;
 import com.kerrrusha.amazonsellerretail.domain.Report;
 import com.kerrrusha.amazonsellerretail.repository.ReportRepository;
+import com.kerrrusha.amazonsellerretail.service.FileService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,7 +15,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.cache.CacheManager;
-import org.springframework.core.io.ClassPathResource;
 
 import java.io.IOException;
 
@@ -28,9 +28,9 @@ import static org.mockito.Mockito.when;
 @Slf4j
 @DataMongoTest
 @ExtendWith(MockitoExtension.class)
-public class ResourceJsonReportFetcherTest extends MongoTestContainerBase {
+public class JsonReportFetcherTest extends MongoTestContainerBase {
 
-    private static final String reportResourceName = "test_report.json";
+    private static final String reportFileName = "test_report.json";
 
     @Autowired
     private ReportRepository reportRepository;
@@ -39,14 +39,14 @@ public class ResourceJsonReportFetcherTest extends MongoTestContainerBase {
     private CacheManager cacheManager;
 
     private final ObjectMapper objectMapper = new ObjectMapper();
-
-    private ResourceJsonReportFetcher reportFetcher;
+    private final FileService fileService = new FileServiceImpl();
+    private JsonReportFetcher reportFetcher;
 
     @BeforeEach
     void beforeEach() {
         objectMapper.registerModule(new JavaTimeModule());
-        reportFetcher = new ResourceJsonReportFetcher(reportRepository, objectMapper, cacheManager);
-        reportFetcher.setReportResourceName(reportResourceName);
+        reportFetcher = new JsonReportFetcher(reportRepository, objectMapper, cacheManager, fileService);
+        reportFetcher.setReportFileName(reportFileName);
     }
 
     @Test
@@ -57,8 +57,8 @@ public class ResourceJsonReportFetcherTest extends MongoTestContainerBase {
         //given
         when(cacheManager.getCacheNames()).thenReturn(emptyList());
 
-        ClassPathResource resource = new ClassPathResource(reportResourceName);
-        Report expectedReport = objectMapper.readValue(resource.getInputStream(), Report.class);
+        String content = fileService.read(reportFileName);
+        Report expectedReport = objectMapper.readValue(content, Report.class);
 
         //when
         reportFetcher.fetchReport();
