@@ -20,9 +20,12 @@ spring:
 
 logging:
   level:
+    com:
+      kerrrusha:
+        amazonsellerretail: DEBUG
     org:
       springframework:
-        security: DEBUG
+        security: INFO
 
 stats:
   source:
