@@ -3,13 +3,13 @@ package com.kerrrusha.amazonsellerretail.domain;
 import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @Document
 public class SalesAndTrafficByDate {
 
-    private Date date;
+    private LocalDate date;
     private SalesReport salesByDate;
     private TrafficReport trafficByDate;
 }

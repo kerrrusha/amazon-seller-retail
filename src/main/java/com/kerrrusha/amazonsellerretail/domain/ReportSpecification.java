@@ -3,7 +3,7 @@ package com.kerrrusha.amazonsellerretail.domain;
 import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -11,13 +11,9 @@ import java.util.List;
 public class ReportSpecification {
 
     private ReportType reportType;
-
     private ReportOptions reportOptions;
-
-    private Date dataStartTime;
-
-    private Date dataEndTime;
-
+    private LocalDate dataStartTime;
+    private LocalDate dataEndTime;
     private List<String> marketplaceIds;
 
     public enum ReportType {
