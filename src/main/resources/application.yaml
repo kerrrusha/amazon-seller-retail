@@ -31,4 +31,4 @@ stats:
   source:
     resource: test_report.json
   refresh-each:
-    ms: 60000
+    ms: 5000
