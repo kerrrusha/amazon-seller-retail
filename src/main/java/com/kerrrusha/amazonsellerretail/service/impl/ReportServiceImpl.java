@@ -39,6 +39,16 @@ public class ReportServiceImpl implements ReportService {
                 .toList();
     }
 
+    @Override
+    public List<SalesAndTrafficByDate> findAllByDate() {
+        return getReport().getSalesAndTrafficByDate();
+    }
+
+    @Override
+    public List<SalesAndTrafficByAsin> findAllByAsin() {
+        return getReport().getSalesAndTrafficByAsin();
+    }
+
     private boolean isDateBetween(LocalDate dateToCheck, LocalDate dateFrom, LocalDate dateTo) {
         return !dateToCheck.isBefore(dateFrom) && !dateToCheck.isAfter(dateTo);
     }

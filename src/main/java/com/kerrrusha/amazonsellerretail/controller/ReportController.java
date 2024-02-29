@@ -44,4 +44,14 @@ public class ReportController {
             @RequestParam("parentAsin") List<String> parentAsinList) {
         return reportService.findByParentAsin(parentAsinList);
     }
+
+    @GetMapping("/total-by-date")
+    public List<SalesAndTrafficByDate> findAllByDate() {
+        return reportService.findAllByDate();
+    }
+
+    @GetMapping("/total-by-asin")
+    public List<SalesAndTrafficByAsin> findAllByAsin() {
+        return reportService.findAllByAsin();
+    }
 }
