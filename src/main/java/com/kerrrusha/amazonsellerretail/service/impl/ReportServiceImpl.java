@@ -33,11 +33,10 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
-    public SalesAndTrafficByAsin findByParentAsin(String parentAsin) {
+    public List<SalesAndTrafficByAsin> findByParentAsin(List<String> parentAsinList) {
         return getReport().getSalesAndTrafficByAsin().stream()
-                .filter(sale -> sale.getParentAsin().equals(parentAsin))
-                .findFirst()
-                .orElse(null);
+                .filter(sale -> parentAsinList.contains(sale.getParentAsin()))
+                .toList();
     }
 
     private boolean isDateBetween(LocalDate dateToCheck, LocalDate dateFrom, LocalDate dateTo) {

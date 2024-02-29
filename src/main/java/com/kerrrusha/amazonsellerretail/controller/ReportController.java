@@ -40,8 +40,8 @@ public class ReportController {
     }
 
     @GetMapping("/by-parent-asin")
-    public SalesAndTrafficByAsin findByParentAsin(
-            @RequestParam("parentAsin") String parentAsin) {
-        return reportService.findByParentAsin(parentAsin);
+    public List<SalesAndTrafficByAsin> findByParentAsin(
+            @RequestParam("parentAsin") List<String> parentAsinList) {
+        return reportService.findByParentAsin(parentAsinList);
     }
 }

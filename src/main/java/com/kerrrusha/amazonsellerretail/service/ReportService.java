@@ -12,5 +12,5 @@ public interface ReportService {
 
     List<SalesAndTrafficByDate> findByDateBetween(LocalDate dateFrom, LocalDate dateTo);
 
-    SalesAndTrafficByAsin findByParentAsin(String asin);
+    List<SalesAndTrafficByAsin> findByParentAsin(List<String> parentAsinList);
 }
