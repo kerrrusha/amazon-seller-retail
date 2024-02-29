@@ -31,7 +31,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    @Operation(summary = "Authenticate a user")
+    @Operation(summary = "Authenticate a user (do login)")
     public JwtAuthenticationResponse login(@Valid @RequestBody UserLoginRequestDto request) {
         return authenticationService.authenticate(request);
     }

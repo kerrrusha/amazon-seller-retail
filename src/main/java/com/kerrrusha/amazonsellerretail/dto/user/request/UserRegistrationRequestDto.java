@@ -13,6 +13,7 @@ import lombok.Data;
 @FieldMatch(first = "password", second = "repeatPassword", message = "The password fields must match")
 public class UserRegistrationRequestDto {
     @Email
+    @Schema(description = "Email", example = "example@mail.com")
     private String email;
 
     @NotBlank
@@ -22,5 +23,6 @@ public class UserRegistrationRequestDto {
 
     @NotBlank
     @Size(min = 3, max = 255)
+    @Schema(description = "Password repeat", example = "my_1secret1_password")
     private String repeatPassword;
 }
