@@ -1,5 +1,6 @@
 package com.kerrrusha.amazonsellerretail.controller;
 
+import com.kerrrusha.amazonsellerretail.domain.SalesAndTrafficByAsin;
 import com.kerrrusha.amazonsellerretail.domain.SalesAndTrafficByDate;
 import com.kerrrusha.amazonsellerretail.service.ReportService;
 import lombok.RequiredArgsConstructor;
@@ -36,5 +37,11 @@ public class ReportController {
             return ResponseEntity.badRequest().build();
         }
         return ResponseEntity.ok(reportService.findByDateBetween(dateFrom, dateTo));
+    }
+
+    @GetMapping("/by-parent-asin")
+    public SalesAndTrafficByAsin findByParentAsin(
+            @RequestParam("parentAsin") String parentAsin) {
+        return reportService.findByParentAsin(parentAsin);
     }
 }

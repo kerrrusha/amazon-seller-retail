@@ -1,6 +1,7 @@
 package com.kerrrusha.amazonsellerretail.service.impl;
 
 import com.kerrrusha.amazonsellerretail.domain.Report;
+import com.kerrrusha.amazonsellerretail.domain.SalesAndTrafficByAsin;
 import com.kerrrusha.amazonsellerretail.domain.SalesAndTrafficByDate;
 import com.kerrrusha.amazonsellerretail.repository.ReportRepository;
 import com.kerrrusha.amazonsellerretail.service.ReportService;
@@ -29,6 +30,14 @@ public class ReportServiceImpl implements ReportService {
         return getReport().getSalesAndTrafficByDate().stream()
                 .filter(sale -> isDateBetween(sale.getDate(), dateFrom, dateTo))
                 .toList();
+    }
+
+    @Override
+    public SalesAndTrafficByAsin findByParentAsin(String parentAsin) {
+        return getReport().getSalesAndTrafficByAsin().stream()
+                .filter(sale -> sale.getParentAsin().equals(parentAsin))
+                .findFirst()
+                .orElse(null);
     }
 
     private boolean isDateBetween(LocalDate dateToCheck, LocalDate dateFrom, LocalDate dateTo) {
