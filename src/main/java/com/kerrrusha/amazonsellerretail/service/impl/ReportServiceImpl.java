@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -21,6 +22,17 @@ public class ReportServiceImpl implements ReportService {
                 .filter(sale -> sale.getDate().equals(date))
                 .findFirst()
                 .orElse(null);
+    }
+
+    @Override
+    public List<SalesAndTrafficByDate> findByDateBetween(LocalDate dateFrom, LocalDate dateTo) {
+        return getReport().getSalesAndTrafficByDate().stream()
+                .filter(sale -> isDateBetween(sale.getDate(), dateFrom, dateTo))
+                .toList();
+    }
+
+    private boolean isDateBetween(LocalDate dateToCheck, LocalDate dateFrom, LocalDate dateTo) {
+        return !dateToCheck.isBefore(dateFrom) && !dateToCheck.isAfter(dateTo);
     }
 
     private Report getReport() {
