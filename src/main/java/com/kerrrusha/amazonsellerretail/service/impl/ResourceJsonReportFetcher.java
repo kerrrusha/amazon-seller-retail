@@ -5,6 +5,7 @@ import com.kerrrusha.amazonsellerretail.domain.Report;
 import com.kerrrusha.amazonsellerretail.repository.ReportRepository;
 import com.kerrrusha.amazonsellerretail.service.ReportFetcher;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,6 +24,7 @@ public class ResourceJsonReportFetcher implements ReportFetcher {
     private final ObjectMapper objectMapper;
     private final CacheManager cacheManager;
 
+    @Setter
     @Value("${stats.source.resource}")
     private String reportResourceName;
 
